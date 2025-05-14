@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "../src/app.css";
 import api from "./services/api";
-// 36:02
+
 function App() {
   const [input, setInput] = useState("");
   const [data, setData] = useState({});
@@ -39,13 +39,15 @@ function App() {
           </button>
         </section>
 
-        <section className="address_data">
-          <p>CEP: {data.cep}</p>
-          <p>Estado: {data.estado} </p>
-          <p>Cidade: {data.localidade}</p>
-          <p>Logradouro: {data.logradouro}</p>
-          <p>Bairro: {data.bairro}</p>
-        </section>
+        {Object.keys(data).length > 0 && (
+          <section className="address_data">
+            <p>CEP: {data.cep}</p>
+            <p>Estado: {data.estado} </p>
+            <p>Cidade: {data.localidade}</p>
+            <p>Logradouro: {data.logradouro}</p>
+            <p>Bairro: {data.bairro}</p>
+          </section>
+        )}
       </div>
     </main>
   );
