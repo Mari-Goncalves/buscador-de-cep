@@ -1,9 +1,10 @@
 import { useState } from "react";
 import "../src/app.css";
 import api from "./services/api";
-
+// 36:02
 function App() {
   const [input, setInput] = useState("");
+  const [data, setData] = useState({});
 
   async function searchCEP() {
     if (input == "") {
@@ -12,10 +13,11 @@ function App() {
 
     try {
       const response = await api.get(`${input}/json/`);
-
-      console.log(response);
+      setData(response.data);
+      setInput("");
     } catch (error) {
       alert("Erro ao buscar.");
+      setInput("");
     }
   }
 
@@ -38,11 +40,11 @@ function App() {
         </section>
 
         <section className="address_data">
-          <p>CEP: 32165498</p>
-          <p>Estado: Rio Grande do Sul - RS</p>
-          <p>Cidade: Porto Alegre</p>
-          <p>Logradouro: Avenida Protasio Alves</p>
-          <p>Bairro: Assis Brasil</p>
+          <p>CEP: {data.cep}</p>
+          <p>Estado: {data.estado} </p>
+          <p>Cidade: {data.localidade}</p>
+          <p>Logradouro: {data.logradouro}</p>
+          <p>Bairro: {data.bairro}</p>
         </section>
       </div>
     </main>
