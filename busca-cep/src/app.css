@@ -16,7 +16,7 @@
   background-color: #ffffffe9;
   border-radius: 10px;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
-  }
+}
 
 .app_container {
   text-align: center;
@@ -27,7 +27,7 @@
   margin-bottom: 1rem;
 }
 
-.search_container{
+.search_container {
   display: flex;
   justify-content: center;
   padding: 1rem;
@@ -35,12 +35,18 @@
   border-bottom: 1px solid #d1d5db;
 }
 
-.search_button{
-  background-color: #7C3AED;
+.search_button {
+  background-color: #7c3aed;
   color: #fff;
   border: 1px solid #557993;
-    border-radius: 5px;
+  border-radius: 5px;
   padding: 0 12px;
+}
+
+.search_button:hover {
+  background-color: #6d34cf;
+  animation-name: mymove;
+  animation-duration: 4s;
 }
 
 .search_input {
