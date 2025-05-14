@@ -1,8 +1,23 @@
 import { useState } from "react";
 import "../src/app.css";
+import api from "./services/api";
 
 function App() {
-  const [input, setInput] = useState('')
+  const [input, setInput] = useState("");
+
+  async function searchCEP() {
+    if (input == "") {
+      alert("Preencha o campo de CEP");
+    }
+
+    try {
+      const response = await api.get(`${input}/json/`);
+
+      console.log(response);
+    } catch (error) {
+      alert("Erro ao buscar.");
+    }
+  }
 
   return (
     <main className="app">
@@ -17,9 +32,9 @@ function App() {
             value={input}
             onChange={(e) => setInput(e.target.value)}
           />
-          <button className="search_button">Pesquisar</button>
-
-          {console.log(input)}
+          <button className="search_button" onClick={searchCEP}>
+            Pesquisar
+          </button>
         </section>
 
         <section className="address_data">
