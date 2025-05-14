@@ -46,3 +46,9 @@
   margin-top: 1rem;
   text-align: left;
 }
+
+@media (max-width: 775px) {
+  .app_container {
+    width: 100%;
+  }
+}
