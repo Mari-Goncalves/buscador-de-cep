@@ -1,6 +1,9 @@
+import { useState } from "react";
 import "../src/app.css";
 
 function App() {
+  const [input, setInput] = useState('')
+
   return (
     <main className="app">
       <div className="app_container">
@@ -9,20 +12,22 @@ function App() {
         <section className="search_container">
           <input
             type="text"
-            name=""
-            id=""
             className="search_input"
             placeholder="digite seu CEP"
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
           />
           <button className="search_button">Pesquisar</button>
+
+          {console.log(input)}
         </section>
 
         <section className="address_data">
-          <p>CEP: </p>
-          <p>Estado: </p>
-          <p>Cidade: </p>
-          <p>Logradouro: </p>
-          <p>Bairro: </p>
+          <p>CEP: 32165498</p>
+          <p>Estado: Rio Grande do Sul - RS</p>
+          <p>Cidade: Porto Alegre</p>
+          <p>Logradouro: Avenida Protasio Alves</p>
+          <p>Bairro: Assis Brasil</p>
         </section>
       </div>
     </main>
