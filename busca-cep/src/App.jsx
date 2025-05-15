@@ -34,6 +34,7 @@ function App() {
 
         <div className="main_content">
           <section className="search_container">
+            <div>
               <input
                 type="text"
                 className="search_input"
@@ -41,14 +42,16 @@ function App() {
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
               />
-              <button className="search_button" onClick={searchCEP}>
-                Pesquisar
-              </button>
 
-            <div className="advices_content">
-              {campoVazio == true && <span>Digite seu CEP.</span>}
-              {erro == true && <span>Erro ao buscar. Tente novamente!</span>}
+              <div>
+                {campoVazio == true && <p className="alert">Digite seu CEP.</p>}
+                {erro == true && <p className="alert">Erro ao buscar. Tente novamente!</p>}
+              </div>
             </div>
+
+            <button className="search_button" onClick={searchCEP}>
+              Pesquisar
+            </button>
           </section>
 
           {Object.keys(data).length > 0 && (
