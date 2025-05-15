@@ -5,18 +5,24 @@ import api from "./services/api";
 function App() {
   const [input, setInput] = useState("");
   const [data, setData] = useState({});
+  const [campoVazio, setCampoVazio] = useState(false);
+  const [erro, setErro] = useState(false);
 
   async function searchCEP() {
     if (input == "") {
-      alert("Preencha o campo de CEP");
+      setCampoVazio(true);
+      return;
     }
 
     try {
       const response = await api.get(`${input}/json/`);
       setData(response.data);
       setInput("");
+      setCampoVazio(false);
+      setErro(false);
     } catch (error) {
-      alert("Erro ao buscar.");
+      setCampoVazio(false);
+      setErro(true);
       setInput("");
     }
   }
@@ -26,28 +32,48 @@ function App() {
       <div className="app_container">
         <h1 className="title">Busca CEP</h1>
 
-        <section className="search_container">
-          <input
-            type="text"
-            className="search_input"
-            placeholder="digite seu CEP"
-            value={input}
-            onChange={(e) => setInput(e.target.value)}
-          />
-          <button className="search_button" onClick={searchCEP}>
-            Pesquisar
-          </button>
-        </section>
+        <div className="main_content">
+          <section className="search_container">
+            <div>
+              <input
+                type="text"
+                className="search_input"
+                placeholder="Digite seu CEP"
+                value={input}
+                onChange={(e) => setInput(e.target.value)}
+              />
 
-        {Object.keys(data).length > 0 && (
-          <section className="address_data">
-            <p>CEP: {data.cep}</p>
-            <p>Estado: {data.estado} </p>
-            <p>Cidade: {data.localidade}</p>
-            <p>Logradouro: {data.logradouro}</p>
-            <p>Bairro: {data.bairro}</p>
+              <div>
+                {campoVazio == true && <p className="alert">O campo está vazio! Digite seu cep.</p>}
+                {erro == true && <p className="alert">Erro ao buscar. Tente novamente!</p>}
+              </div>
+            </div>
+
+            <button className="search_button" onClick={searchCEP}>
+              Pesquisar
+            </button>
           </section>
-        )}
+
+          {Object.keys(data).length > 0 && (
+            <section className="address_data">
+              <p>
+                <strong>CEP:</strong> {data.cep}
+              </p>
+              <p>
+                <strong>Estado:</strong> {data.estado}
+              </p>
+              <p>
+                <strong>Cidade:</strong> {data.localidade}
+              </p>
+              <p>
+                <strong>Logradouro:</strong> {data.logradouro}
+              </p>
+              <p>
+                <strong>Bairro:</strong> {data.bairro}
+              </p>
+            </section>
+          )}
+        </div>
       </div>
     </main>
   );
