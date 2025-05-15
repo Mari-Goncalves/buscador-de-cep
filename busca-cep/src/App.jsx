@@ -5,18 +5,24 @@ import api from "./services/api";
 function App() {
   const [input, setInput] = useState("");
   const [data, setData] = useState({});
+  const [campoVazio, setCampoVazio] = useState(false);
+  const [erro, setErro] = useState(false);
 
   async function searchCEP() {
     if (input == "") {
-      alert("Preencha o campo de CEP");
+      setCampoVazio(true);
+      return;
     }
 
     try {
       const response = await api.get(`${input}/json/`);
       setData(response.data);
       setInput("");
+      setCampoVazio(false);
+      setErro(false);
     } catch (error) {
-      alert("Erro ao buscar.");
+      setCampoVazio(false);
+      setErro(true);
       setInput("");
     }
   }
@@ -28,16 +34,21 @@ function App() {
 
         <div className="main_content">
           <section className="search_container">
-            <input
-              type="text"
-              className="search_input"
-              placeholder="Digite seu CEP"
-              value={input}
-              onChange={(e) => setInput(e.target.value)}
-            />
-            <button className="search_button" onClick={searchCEP}>
-              Pesquisar
-            </button>
+              <input
+                type="text"
+                className="search_input"
+                placeholder="Digite seu CEP"
+                value={input}
+                onChange={(e) => setInput(e.target.value)}
+              />
+              <button className="search_button" onClick={searchCEP}>
+                Pesquisar
+              </button>
+
+            <div className="advices_content">
+              {campoVazio == true && <span>Digite seu CEP.</span>}
+              {erro == true && <span>Erro ao buscar. Tente novamente!</span>}
+            </div>
           </section>
 
           {Object.keys(data).length > 0 && (
@@ -46,7 +57,7 @@ function App() {
                 <strong>CEP:</strong> {data.cep}
               </p>
               <p>
-                <strong>Estado:</strong> {data.estado}{" "}
+                <strong>Estado:</strong> {data.estado}
               </p>
               <p>
                 <strong>Cidade:</strong> {data.localidade}
