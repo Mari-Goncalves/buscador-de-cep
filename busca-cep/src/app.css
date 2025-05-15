@@ -63,7 +63,7 @@
   padding: 1.5rem;
 }
 
-.alert{
+.alert {
   text-align: left;
   color: red;
   font-size: 0.8rem;
@@ -77,19 +77,19 @@
 }
 
 @media (max-width: 375px) {
-  .search_container{
+  .search_container {
     flex-direction: column;
   }
 
-  .search_button{
+  .search_button {
     padding: 6px 12px;
   }
 
-  .address_data{
+  .address_data {
     padding: 1rem;
   }
 
-  .search_input{
+  .search_input {
     width: 100%;
   }
 }
