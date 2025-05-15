@@ -61,7 +61,7 @@
   flex-direction: column;
   gap: 0.7rem;
   text-align: left;
-  padding: 1rem;
+  padding: 1.5rem;
 }
 
 @media (max-width: 775px) {
