@@ -41,12 +41,11 @@
   border: 1px solid #557993;
   border-radius: 5px;
   padding: 0 12px;
+  height: 34px;
 }
 
 .search_button:hover {
   background-color: #6d34cf;
-  animation-name: mymove;
-  animation-duration: 4s;
 }
 
 .search_input {
@@ -68,7 +67,7 @@
   text-align: left;
   color: red;
   font-size: 0.8rem;
-  padding: 0 10px;
+  padding: 0 5px;
 }
 
 @media (max-width: 775px) {
@@ -88,5 +87,9 @@
 
   .address_data{
     padding: 1rem;
+  }
+
+  .search_input{
+    width: 100%;
   }
 }
