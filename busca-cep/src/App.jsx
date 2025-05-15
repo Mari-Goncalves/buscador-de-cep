@@ -44,7 +44,7 @@ function App() {
               />
 
               <div>
-                {campoVazio == true && <p className="alert">Digite seu CEP.</p>}
+                {campoVazio == true && <p className="alert">O campo está vazio! Digite seu cep.</p>}
                 {erro == true && <p className="alert">Erro ao buscar. Tente novamente!</p>}
               </div>
             </div>
